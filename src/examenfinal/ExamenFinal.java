@@ -11,6 +11,14 @@ public class ExamenFinal {
         can1.reproducir();
         can2.reproducir();
         can3.reproducir();
+        
+        Playlist playlist = new Playlist();
+
+        playlist.agregarCancion(can1);
+        playlist.agregarCancion(can2);
+        playlist.agregarCancion(can3);
+
+        playlist.mostrarPlaylist();
     }
     
 }
