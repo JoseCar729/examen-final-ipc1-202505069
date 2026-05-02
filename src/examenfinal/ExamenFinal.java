@@ -18,7 +18,22 @@ public class ExamenFinal {
         playlist.agregarCancion(can2);
         playlist.agregarCancion(can3);
 
+        System.out.println("\nPlayList Inicial");
+        playlist.mostrarPlaylist();
+
+        System.out.println("\nSiguiente");
+        playlist.siguiente();
+
+        System.out.println("\nSiguiente");
+        playlist.siguiente();  
+
+        System.out.println("\nAnterior");
+        playlist.anterior();  
+
+        System.out.println("\nEliminar Actual");
+        playlist.eliminarActual(); 
+
+        System.out.println("\nPlayList Final");
         playlist.mostrarPlaylist();
     }
-    
 }

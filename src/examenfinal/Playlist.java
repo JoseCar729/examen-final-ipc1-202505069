@@ -33,7 +33,7 @@ public class Playlist {
 
         while (temp != null) {
             Cancion c = temp.getDato();
-            System.out.println(c.getTitulo() + " - " + c.getArtista());
+            System.out.println(c.getTitulo() + " - " + c.getArtista()+ " (" + c.getDuracion() + ")");
             temp = temp.getSiguiente();
         }
     }
@@ -41,4 +41,59 @@ public class Playlist {
     public int getTamaño() {
         return tamaño;
     }
-}
+    
+    public Cancion siguiente() {
+        if (actual == null || actual.getSiguiente() == null) {
+            return null;
+        }
+
+        actual = actual.getSiguiente();
+        actual.getDato().reproducir();
+        return actual.getDato();
+    }
+    
+    public Cancion anterior() {
+        if (actual == null || actual.getAnterior() == null) {
+            return null;
+        }
+
+        actual = actual.getAnterior();
+        actual.getDato().reproducir();
+        return actual.getDato();
+    }
+    
+   public void eliminarActual() {
+        if (actual == null) return;
+
+        Cancion eliminada = actual.getDato();
+        System.out.println(eliminada.getTitulo() + " eliminada de la playlist");
+
+        if (cabeza == cola) {
+            cabeza = cola = actual = null;
+        }
+
+        else if (actual == cabeza) {
+            cabeza = cabeza.getSiguiente();
+            cabeza.setAnterior(null);
+            actual = cabeza;
+        }
+
+        else if (actual == cola) {
+            cola = cola.getAnterior();
+            cola.setSiguiente(null);
+            actual = cola;
+        }
+
+        else {
+            NodoDoble anterior = actual.getAnterior();
+            NodoDoble siguiente = actual.getSiguiente();
+
+            anterior.setSiguiente(siguiente);
+            siguiente.setAnterior(anterior);
+
+            actual = siguiente;
+        }
+
+        tamaño--;
+    }
+}  
